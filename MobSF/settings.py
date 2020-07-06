@@ -9,8 +9,10 @@ import imp
 import logging
 import os
 
-from MobSF.utils import (find_java_binary, first_run,
-                         get_mobsf_home)
+from MobSF.init import (
+    first_run,
+    get_mobsf_home,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +21,7 @@ logger = logging.getLogger(__name__)
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-MOBSF_VER = 'v3.0.7 Beta'
+MOBSF_VER = 'v3.0.9 Beta'
 
 BANNER = """
   __  __       _    ____  _____       _____  ___  
@@ -39,7 +41,7 @@ USE_HOME = False
 # If you need multiple users to share the scan results set this to False
 # ===============================================
 
-MobSF_HOME = get_mobsf_home(USE_HOME)
+MobSF_HOME = get_mobsf_home(USE_HOME, BASE_DIR)
 # Logs Directory
 LOG_DIR = os.path.join(MobSF_HOME, 'logs/')
 # Download Directory
@@ -249,11 +251,13 @@ else:
         r'org[\\\/]{1}chromium[\\\/]{1}',
         r'com[\\\/]{1}facebook[\\\/]{1}',
         r'org[\\\/]{1}spongycastle[\\\/]{1}',
+        r'org[\\\/]{1}bouncycastle[\\\/]{1}',
         r'com[\\\/]{1}amazon[\\\/]{1}identity[\\\/]{1}',
         r'io[\\\/]{1}fabric[\\\/]{1}sdk[\\\/]{1}',
         r'com[\\\/]{1}instabug[\\\/]{1}',
         r'io[\\\/]{1}fabric[\\\/]{1}sdk[\\\/]{1}',
         r'com[\\\/]{1}crashlytics[\\\/]{1}android[\\\/]{1}',
+        r'com[\\\/]{1}fasterxml[\\\/]{1}jackson[\\\/]{1}',
     ]
 
     # ==============================================
@@ -335,7 +339,7 @@ else:
     # ==============================================
 
     # -----External URLS--------------------------
-    MALWARE_DB_URL = 'http://www.malwaredomainlist.com/mdlcsv.php'
+    MALWARE_DB_URL = 'https://www.malwaredomainlist.com/mdlcsv.php'
     VIRUS_TOTAL_BASE_URL = 'https://www.virustotal.com/vtapi/v2/file/'
     EXODUS_URL = 'https://reports.exodus-privacy.eu.org'
     APPMONSTA_URL = 'https://api.appmonsta.com/v1/stores/android/details/'
@@ -366,10 +370,6 @@ else:
     # ==============================================
     # ^CONFIG-END^: Do not edit this line
 
-
-# ============JAVA SETTINGS======================
-JAVA_BINARY = find_java_binary()
-# ===============================================
 
 # Better logging
 LOGGING = {

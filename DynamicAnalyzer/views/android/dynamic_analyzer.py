@@ -38,7 +38,7 @@ def dynamic_analysis(request):
         try:
             identifier = get_device()
         except Exception:
-            msg = ('Is Andoird VM running? MobSF cannot'
+            msg = ('Is Android VM running? MobSF cannot'
                    ' find android instance identifier.'
                    ' Please run an android instance and refresh'
                    ' this page. If this error persists,'
@@ -155,7 +155,7 @@ def httptools_start(request):
                '/dashboard/{}'.format(
                    str(settings.PROXY_PORT),
                    project))
-        return HttpResponseRedirect(url)
+        return HttpResponseRedirect(url)  # lgtm [py/reflective-xss]
     except Exception:
         logger.exception('Starting httptools Web UI')
         err = 'Error Starting httptools UI'
